@@ -30,12 +30,12 @@ function App() {
     }
   };
 
-  // Funzione per determinare l'URL della bandiera in base alla lingua
+  // Determino l'URL della bandiera
   const getFlag = (languageCode) => {
     if (languageCode === "it") {
-      return "/IT.png"; // Bandiera Italia
+      return "/IT.png";
     } else if (languageCode === "en") {
-      return "/US.png"; // Bandiera USA
+      return "/US.png";
     }
     return null; // Nessuna bandiera
   };
