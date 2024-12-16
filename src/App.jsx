@@ -3,12 +3,13 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 
 function App() {
-  // Global state
+  // Stato Globale
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
+  const [series, setSeries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Gestione ricerca film
+  // Gestione ricerca Film e Serie TV
   const handleSearch = async () => {
     if (!search.trim()) return; // Nessuna ricerca vuota
 
@@ -16,23 +17,32 @@ function App() {
 
     try {
       const apiKey = "2d87b080259acd9dbe80430182083cf4"; // API Key
-      const response = await fetch(
+      const movieResponse = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
           search
         )}&api_key=${apiKey}`
       );
-      const data = await response.json();
+      const tvResponse = await fetch(
+        `https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(
+          search
+        )}&api_key=${apiKey}`
+      );
+      const movieData = await movieResponse.json();
+      const tvData = await tvResponse.json();
 
-      setMovies(data.results || []); // Aggiorna lo stato con i risultati
+      // Aggiorno i risultati di Film e Serie TV
+      setMovies(movieData.results || []);
+      setSeries(tvData.results || []);
     } catch (error) {
       console.error("Error during the search:", error);
       setMovies([]);
+      setSeries([]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Determina l'URL della bandiera
+  // Determino l'URL della bandiera
   const getFlag = (languageCode) => {
     if (languageCode === "it") {
       return "/IT.png";
@@ -50,7 +60,12 @@ function App() {
         handleSearch={handleSearch}
         isLoading={isLoading}
       />
-      <Main movies={movies} isLoading={isLoading} getFlag={getFlag} />
+      <Main
+        movies={movies}
+        series={series}
+        isLoading={isLoading}
+        getFlag={getFlag}
+      />
     </div>
   );
 }

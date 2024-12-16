@@ -3,7 +3,7 @@ import React from "react";
 function Header({ search, setSearch, handleSearch, isLoading }) {
   return (
     <div>
-      <h1 className="text-center mb-3">Movie</h1>
+      <h1 className="text-center mb-3">Movies & Tv Series</h1>
       <div className="row justify-content-center mb-3">
         <div className="col">
           <div className="input-group">
