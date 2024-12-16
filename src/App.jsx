@@ -61,7 +61,16 @@ function App() {
             <ul className="list-group">
               {movies.map((movie) => (
                 <li key={movie.id} className="list-group-item">
-                  {movie.title}
+                  <h5>{movie.title}</h5>
+                  <p>
+                    <strong>Original Title:</strong> {movie.original_title}
+                  </p>
+                  <p>
+                    <strong>Language:</strong> {movie.original_language}
+                  </p>
+                  <p>
+                    <strong>Rating:</strong> {movie.vote_average}
+                  </p>
                 </li>
               ))}
             </ul>
