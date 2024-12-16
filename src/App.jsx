@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 function App() {
   // Global state
@@ -30,7 +32,7 @@ function App() {
     }
   };
 
-  // Determino l'URL della bandiera
+  // Determina l'URL della bandiera
   const getFlag = (languageCode) => {
     if (languageCode === "it") {
       return "/IT.png";
@@ -42,58 +44,13 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="text-center mb-3">Movie</h1>
-      <div className="row justify-content-center mb-3">
-        <div className="col">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search a movie"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button
-              className="btn btn-primary"
-              onClick={handleSearch}
-              disabled={isLoading}
-            >
-              {isLoading ? "Searching" : "Search"}
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          {movies.length > 0 ? (
-            <ul className="list-group">
-              {movies.map((movie) => (
-                <li key={movie.id} className="list-group-item">
-                  <h5>{movie.title}</h5>
-                  <p>
-                    <strong>Original Title:</strong> {movie.original_title}
-                  </p>
-                  <p>
-                    <strong>Language:</strong> {movie.original_language}
-                    {getFlag(movie.original_language) && (
-                      <img
-                        src={getFlag(movie.original_language)}
-                        alt={movie.original_language}
-                        style={{ width: 30, height: 30, marginLeft: 10 }}
-                      />
-                    )}
-                  </p>
-                  <p>
-                    <strong>Rating:</strong> {movie.vote_average}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            !isLoading && <p className="text-center">No results found</p>
-          )}
-        </div>
-      </div>
+      <Header
+        search={search}
+        setSearch={setSearch}
+        handleSearch={handleSearch}
+        isLoading={isLoading}
+      />
+      <Main movies={movies} isLoading={isLoading} getFlag={getFlag} />
     </div>
   );
 }
