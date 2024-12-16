@@ -5,8 +5,6 @@ function App() {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedGenre, setSelectedGenre] = useState(null);
-  const [seSelectedGenre, setSeSelectedGenre] = useState(null);
 
   // Gestione ricerca film
   const handleSearch = async () => {
@@ -30,6 +28,16 @@ function App() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Funzione per determinare l'URL della bandiera in base alla lingua
+  const getFlag = (languageCode) => {
+    if (languageCode === "it") {
+      return "/IT.png"; // Bandiera Italia
+    } else if (languageCode === "en") {
+      return "/US.png"; // Bandiera USA
+    }
+    return null; // Nessuna bandiera
   };
 
   return (
@@ -67,6 +75,12 @@ function App() {
                   </p>
                   <p>
                     <strong>Language:</strong> {movie.original_language}
+                    {getFlag(movie.original_language) && (
+                      <img
+                        src={getFlag(movie.original_language)}
+                        alt={movie.original_language}
+                      />
+                    )}
                   </p>
                   <p>
                     <strong>Rating:</strong> {movie.vote_average}
