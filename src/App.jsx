@@ -79,6 +79,7 @@ function App() {
                       <img
                         src={getFlag(movie.original_language)}
                         alt={movie.original_language}
+                        style={{ width: 30, height: 30, marginLeft: 10 }}
                       />
                     )}
                   </p>
