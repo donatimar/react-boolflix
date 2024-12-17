@@ -31,7 +31,7 @@ function Main() {
                     <img src={movie.poster_url} alt={movie.title} />
                   )}
                   <div>
-                    <h5>{movie.title}</h5>
+                    <strong>Title:</strong> {movie.title}
                     <p>
                       <strong>Original Title:</strong> {movie.original_title}
                     </p>
@@ -46,9 +46,7 @@ function Main() {
                       )}
                     </p>
                     <p>
-                      <strong>Rating:</strong> {movie.vote_average}
-                    </p>
-                    <p>
+                      <strong>Rating:</strong>
                       {getStars(movie.vote_average).map((star, index) => (
                         <i
                           key={index}
@@ -77,7 +75,8 @@ function Main() {
                     <img src={tvShow.poster_url} alt={tvShow.name} />
                   )}
                   <div>
-                    <h5>{tvShow.name}</h5>
+                    <strong>Title:</strong>
+                    {tvShow.name}
                     <p>
                       <strong>Original Title:</strong> {tvShow.original_name}
                     </p>
@@ -92,9 +91,7 @@ function Main() {
                       )}
                     </p>
                     <p>
-                      <strong>Rating:</strong> {tvShow.vote_average}
-                    </p>
-                    <p>
+                      <strong>Rating:</strong>
                       {getStars(tvShow.vote_average).map((star, index) => (
                         <i
                           key={index}
