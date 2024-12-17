@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
 
-function Main({ movies, series, isLoading, getFlag }) {
+function Main() {
+  const { movies, series, isLoading, getFlag } = useContext(AppContext);
+
   return (
     <div className="row">
       <div className="col">

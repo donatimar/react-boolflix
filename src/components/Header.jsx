@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
 
-function Header({ search, setSearch, handleSearch, isLoading }) {
+function Header() {
+  const { search, setSearch, handleSearch, isLoading } = useContext(AppContext);
+
   return (
     <div>
       <h1 className="text-center mb-3">Movies & Tv Series</h1>
