@@ -24,7 +24,7 @@ function Card({
 
   return (
     <div className="card-container">
-      {/* Poster di default */}
+      {/* Copertina di default */}
       <div
         className="card-poster"
         style={{
