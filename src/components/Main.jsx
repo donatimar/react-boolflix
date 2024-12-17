@@ -4,6 +4,16 @@ import { AppContext } from "../contexts/AppContext";
 function Main() {
   const { movies, series, isLoading, getFlag } = useContext(AppContext);
 
+  // Rating di stelle
+  const getStars = (rating) => {
+    // Faccio diventare il voto da 1 a 5 (arrotondato per eccesso)
+    const starCount = Math.ceil(rating / 2);
+    const stars = Array.from({ length: 5 }, (_, index) =>
+      index < starCount ? "star" : "star-o"
+    );
+    return stars;
+  };
+
   return (
     <div className="row">
       <div className="col">
@@ -37,6 +47,15 @@ function Main() {
                     </p>
                     <p>
                       <strong>Rating:</strong> {movie.vote_average}
+                    </p>
+                    <p>
+                      {getStars(movie.vote_average).map((star, index) => (
+                        <i
+                          key={index}
+                          className={`fa fa-${star}`}
+                          style={{ color: "gold" }}
+                        ></i>
+                      ))}
                     </p>
                   </div>
                 </li>
@@ -74,6 +93,15 @@ function Main() {
                     </p>
                     <p>
                       <strong>Rating:</strong> {tvShow.vote_average}
+                    </p>
+                    <p>
+                      {getStars(tvShow.vote_average).map((star, index) => (
+                        <i
+                          key={index}
+                          className={`fa fa-${star}`}
+                          style={{ color: "gold" }}
+                        ></i>
+                      ))}
                     </p>
                   </div>
                 </li>
