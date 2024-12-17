@@ -1,43 +1,58 @@
 import React from "react";
+import "../assets/css/index.css";
 
-function Card({ title, originalTitle, language, flag, rating, posterUrl }) {
+// Rating di stelle
+const getStars = (rating) => {
+  // Faccio diventare il voto da 1 a 5 (arrotondato per eccesso)
+  const starCount = Math.ceil(rating / 2);
+  const stars = Array.from({ length: 5 }, (_, index) =>
+    index < starCount ? "star" : "star-o"
+  );
+  return stars;
+};
+
+function Card({
+  title,
+  originalTitle,
+  language,
+  flag,
+  rating,
+  overview,
+  posterUrl,
+}) {
+  const stars = getStars(rating);
+
   return (
-    <div
-      className="card text-white"
-      style={{
-        backgroundImage: `url(${posterUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        height: "342px",
-      }}
-    >
-      <div className="card-body d-flex flex-column justify-content-end bg-dark bg-opacity-50">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text mb-1">
+    <div className="card-container">
+      {/* Poster di default */}
+      <div
+        className="card-poster"
+        style={{
+          backgroundImage: `url(${posterUrl})`,
+        }}
+      ></div>
+
+      {/* Informazioni */}
+      <div className="card-info">
+        <p>
+          <strong>Title:</strong> {title}
+        </p>
+        <p>
           <strong>Original Title:</strong> {originalTitle}
         </p>
-        <p className="card-text mb-1">
+        <p>
           <strong>Language:</strong> {language}{" "}
-          {flag && (
-            <img
-              src={flag}
-              alt={language}
-              style={{ width: "30px", marginLeft: "10px" }}
-            />
-          )}
+          {flag && <img src={flag} alt={language} className="flag-icon" />}
         </p>
-        <p className="card-text">
+        <p>
           <strong>Rating:</strong>{" "}
-          {Array.from({ length: 5 }, (_, i) => (
-            <i
-              key={i}
-              className={`fa fa-${
-                i < Math.ceil(rating / 2) ? "star" : "star-o"
-              }`}
-              style={{ color: "gold" }}
-            ></i>
-          ))}
+          <span className="stars">
+            {stars.map((star, index) => (
+              <i key={index} className={`fa fa-${star}`}></i>
+            ))}
+          </span>
         </p>
+        <p className="overview">{overview}</p>
       </div>
     </div>
   );

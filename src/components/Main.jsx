@@ -18,6 +18,7 @@ function Main() {
           flag={getFlag(item.original_language)}
           rating={item.vote_average}
           posterUrl={item.poster_url}
+          overview={item.overview}
         />
       </div>
     ));
