@@ -16,7 +16,7 @@ function Header() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Search a movie"
+                placeholder="Search a movie or a TV series"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
