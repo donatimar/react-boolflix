@@ -16,6 +16,7 @@ export function AppProvider({ children }) {
 
     try {
       const apiKey = "2d87b080259acd9dbe80430182083cf4";
+      const baseImageUrl = "https://image.tmdb.org/t/p/w342";
       const movieResponse = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
           search
@@ -30,8 +31,23 @@ export function AppProvider({ children }) {
       const movieData = await movieResponse.json();
       const tvData = await tvResponse.json();
 
-      setMovies(movieData.results || []);
-      setSeries(tvData.results || []);
+      // Copertina
+      const formattedMovies = movieData.results.map((movie) => ({
+        ...movie,
+        poster_url: movie.poster_path
+          ? `${baseImageUrl}${movie.poster_path}`
+          : null, // No immagini
+      }));
+
+      const formattedSeries = tvData.results.map((tvShow) => ({
+        ...tvShow,
+        poster_url: tvShow.poster_path
+          ? `${baseImageUrl}${tvShow.poster_path}`
+          : null,
+      }));
+
+      setMovies(formattedMovies);
+      setSeries(formattedSeries);
     } catch (error) {
       console.error("Error during the search:", error);
       setMovies([]);
@@ -41,6 +57,7 @@ export function AppProvider({ children }) {
     }
   };
 
+  // Bandierina
   const getFlag = (languageCode) => {
     if (languageCode === "it") {
       return "/IT.png";
