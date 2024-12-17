@@ -25,7 +25,7 @@ function Main() {
   };
 
   return (
-    <div className="bg-secondary py-3">
+    <div className="bg-secondary min-vh-100 py-3">
       <div className="container my-4">
         <div className="row">
           {/* Film */}
