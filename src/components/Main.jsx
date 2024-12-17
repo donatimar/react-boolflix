@@ -25,28 +25,30 @@ function Main() {
   };
 
   return (
-    <div className="container my-4">
-      <div className="row">
-        {/* Film */}
-        {movies.length > 0 && (
-          <>
-            <h2 className="text-center mb-4">Movies</h2>
-            <div className="row">{generateCards(movies, "movie")}</div>
-          </>
-        )}
+    <div className="bg-secondary py-3">
+      <div className="container my-4">
+        <div className="row">
+          {/* Film */}
+          {movies.length > 0 && (
+            <>
+              <h2 className="text-center mb-4">Movies</h2>
+              <div className="row">{generateCards(movies, "movie")}</div>
+            </>
+          )}
 
-        {/* Serie TV */}
-        {series.length > 0 && (
-          <>
-            <h2 className="text-center mt-4 mb-4">TV Series</h2>
-            <div className="row">{generateCards(series, "series")}</div>
-          </>
-        )}
+          {/* Serie TV */}
+          {series.length > 0 && (
+            <>
+              <h2 className="text-center mt-4 mb-4">TV Series</h2>
+              <div className="row">{generateCards(series, "series")}</div>
+            </>
+          )}
 
-        {/* Nessun risultato */}
-        {movies.length === 0 && series.length === 0 && (
-          <p className="text-center">No results found</p>
-        )}
+          {/* Nessun risultato */}
+          {movies.length === 0 && series.length === 0 && (
+            <p className="text-center">No results found</p>
+          )}
+        </div>
       </div>
     </div>
   );
